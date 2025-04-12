@@ -1,0 +1,8 @@
+# Usar la imagen oficial de MariaDB como base para el contenedor de backup
+FROM mariadb:latest
+
+# Instalar el cliente MariaDB que contiene mysqldump
+RUN apt-get update && apt-get install -y mariadb-client
+
+# Comando para realizar el backup cada minuto
+CMD ["/bin/sh", "-c", "while true; do timestamp=$(date +\"%Y-%m-%d_%H-%M-%S\"); mysqldump -h mariadb -u root -p rootpass parcial2 > /backup/backup_${timestamp}.sql; sleep 60; done"]

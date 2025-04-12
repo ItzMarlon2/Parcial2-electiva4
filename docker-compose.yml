@@ -14,14 +14,12 @@ services:
       - mariadb_data:/var/lib/mysql
 
   backup:
-    image: alpine
-    container_name: mariadb_backup
+    build:
+      context: .
+      dockerfile: Dockerfile.backup
+    container_name: mariadb-backup
     depends_on:
       - mariadb
-    entrypoint: >
-      sh -c "
-        mysqldump -h mariadb -u root -pexample_password my_database > /backup/$(date +'%Y-%m-%d')_backup.sql
-      "
     volumes:
       - mariadb_backup:/backup
 
