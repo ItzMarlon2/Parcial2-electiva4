@@ -1,0 +1,19 @@
+# Ignorar archivos y carpetas generados por Maven
+
+#Este directorio contiene los archivos generados por Maven durante la construcción, como el archivo JAR. No es necesario incluirlo en la imagen Docker porque el proceso de construcción se realiza dentro del contenedor.
+target/
+
+*.log
+*.iml
+.idea/
+.DS_Store
+
+# Ignorar directorios y archivos de configuración local
+.vscode/
+*.swp
+*.bak
+
+# Ignorar archivos de configuración de Git
+.git/
+.gitignore
+
